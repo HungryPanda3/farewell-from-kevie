@@ -11,6 +11,9 @@ const scoreElement = document.getElementById("score");
 const energyFill = document.getElementById("energyFill");
 const energyText = document.getElementById("energyText");
 
+const welcomeImage = new Image();
+welcomeImage.src = "assets/ui/welcome-page.png";
+
 const quinnyButton = document.getElementById("quinnyButton");
 const quinnyPopup = document.getElementById("quinnyPopup");
 
@@ -137,6 +140,8 @@ let gameStarted = false;
 
 let gamePaused = false;
 
+let showWelcome = true;
+
 let showQuinny02 = false;
 let energyBeforeQuinny = 0;
 
@@ -169,6 +174,18 @@ function selectTrackReport() {
   );
 
   currentTrackReport = trackReports[randomIndex];
+
+}
+
+function drawWelcomeScreen() {
+
+  ctx.drawImage(
+    welcomeImage,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
 }
 
@@ -1382,22 +1399,40 @@ function updateScore() {
 function gameLoop() {
 
   ctx.clearRect(
-
     0,
-
     0,
-
     canvas.width,
-
     canvas.height
-
   );
 
-  if (!gameStarted && !gameOver) {
+
+  // =========================
+  // WELCOME SCREEN
+  // =========================
+
+  if (showWelcome) {
+
+    drawWelcomeScreen();
+
+  }
+
+
+  // =========================
+  // JOHN'S TRACK REPORT
+  // =========================
+
+  else if (!gameStarted && !gameOver) {
 
     drawTrackReport();
 
-  } else {
+  }
+
+
+  // =========================
+  // GAME
+  // =========================
+
+  else {
 
     drawBackground();
 
@@ -1412,7 +1447,7 @@ function gameLoop() {
     drawBanners();
 
     drawObstacles();
-    
+
     drawPlayer();
 
     drawSDQuote();
@@ -1423,6 +1458,7 @@ function gameLoop() {
 
     drawQuinny02();
 
+
     if (!gameOver && !gamePaused) {
 
       updatePlayer();
@@ -1431,7 +1467,7 @@ function gameLoop() {
 
       updateBackground();
       updateClouds();
-      updateScenery ();
+      updateScenery();
       updateTurf();
       updateRailBackgrounds();
       updateBanners();
@@ -1442,9 +1478,13 @@ function gameLoop() {
 
     }
 
+
     if (gamePaused) {
+
       drawPauseScreen();
+
     }
+
 
     if (gameOver) {
 
@@ -1454,6 +1494,8 @@ function gameLoop() {
 
   }
 
+
+  // Keep drawing the game
   requestAnimationFrame(gameLoop);
 
 }
@@ -1488,19 +1530,39 @@ if (event.code === "Escape") {
 
 
   if (
-    event.code === "Space" ||
-    event.code === "ArrowUp"
-  ) {
+  event.code === "Space" ||
+  event.code === "ArrowUp"
+) {
 
-    event.preventDefault();
+  event.preventDefault();
 
-    // JOHN'S TRACK REPORT
-    if (!gameStarted && !gameOver) {
 
-      gameStarted = true;
-      return;
+  // =========================
+  // WELCOME SCREEN
+  // =========================
 
-    }
+  if (showWelcome) {
+
+    showWelcome = false;
+
+    selectTrackReport();
+
+    return;
+
+  }
+
+
+  // =========================
+  // JOHN'S TRACK REPORT
+  // =========================
+
+  if (!gameStarted && !gameOver) {
+
+    gameStarted = true;
+
+    return;
+
+  }
 
     // GAME OVER
     if (gameOver) {
@@ -1657,6 +1719,7 @@ quinnyButton.addEventListener("click", activateQuinny);
 // =========================
 
 const gameImages = [
+  
   simonIdleImage,
   simonRun01Image,
   simonRun02Image,
@@ -1681,7 +1744,8 @@ const gameImages = [
   clouds01Image,
   clouds02Image,
 
-  johnKeltonImage
+  johnKeltonImage,
+  welcomeImage
 ];
 
 
