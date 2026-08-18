@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+body {
+  margin: 0;
+  background: #111;
+  font-family: "VT323", monospace;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.game-wrapper {
+  position: relative;
+}
+
+canvas {
+  display: block;
+
+  width: min(1280px, 90vw);
+  height: auto;
+
+  border: 4px solid white;
+
+  image-rendering: pixelated;
+}
+
+.hud {
+  display: none;
+}
+
+.energy-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.energy-bar {
+  width: 250px;
+  height: 20px;
+
+  border: 2px solid white;
+  background: #333;
+}
+
+#energyFill {
+  width: 100%;
+  height: 100%;
+
+  background: limegreen;
+}
+
+#quinnyButton {
+  display: none;
+
+  position: absolute;
+
+  right: 20px;
+  bottom: 20px;
+
+  padding: 15px 20px;
+
+  background: gold;
+
+  border: 4px solid white;
+
+  font-family: "Press Start 2P", monospace;
+  font-weight: bold;
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.quinny-key {
+  font-family: "VT323", monospace;
+  font-size: 12px;
+}
+
+.popup {
+  position: absolute;
+
+  right: 20px;
+  bottom: 20px;
+
+  width: 280px;
+  min-height: 160px;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.85);
+
+  border: 4px solid white;
+
+  text-align: center;
+
+  font-family: "VT323", monospace;
+
+  z-index: 100;
+}
+
+.hidden {
+  display: none;
+}
+

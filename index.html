@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SD Racing</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="game-wrapper">
+
+    <div class="hud">
+      <div>
+        SCORE: <span id="score">0</span>
+      </div>
+
+      <div class="energy-container">
+        ENERGY
+        <div class="energy-bar">
+          <div id="energyFill"></div>
+        </div>
+        <span id="energyText">100%</span>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+    <button id="quinnyButton">
+      GIVE EM STRENGTH!
+      <span class="quinny-key">(PRESS ENTER)</span>
+    </button>
+    
+    <div id="quinnyPopup" class="popup hidden">
+      <h1>QUINNY</h1>
+      <p>GIVE EM STRENGTH!</p>
+    </div>
+
+  </div>
+
+  
+
+  <script src="farewell-from-kevie.js"></script>
+
+</body>
+</html>
